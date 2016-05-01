@@ -1,16 +1,5 @@
 #! /bin/bash
 
-export q=55
-export w=57
-export e=59
-export r=60
-export t=62
-export y=64
-export u=65
-export i=67
-export o=69
-export p=71
-
 tone () {
   local note="$1" #primo parametro
   local duration="$2" #secondo parametro
@@ -34,32 +23,30 @@ do
     read -r -n 1 key
     case "$key" in
       # TAB ) note=54;;   #not working!
-        q) note=$q;;
+        q) note=55;;
         2) note=56;;
-        w) note=$w;;
+        w) note=57;;
         3) note=58;;
-        e) note=$e;;
-        r) note=$r;;
+        e) note=59;;
+        r) note=60;;
         5) note=61;;
-        t) note=$t;;
+        t) note=62;;
         6) note=63;;
-        y) note=$y;;
-        u) note=$u;;
+        y) note=64;;
+        u) note=65;;
         8) note=66;;
-        i) note=$i;;
+        i) note=67;;
         9) note=68;;
-        o) note=$o;;
+        o) note=69;;
         0) note=70;;
-        p) note=$p;;
-        "-") note=73;;
+        p) note=71;;
         "[") note=72;;
-        "=") note=75;;
+        "-") note=73;;
         "]") note=74;;
-        '\') note=76;;
-        a) note=0;;
-	z) duration=0.1;;
-	x) duration=0.5;;
-	c) duration=1.0;;
+        "=") note=75;;
+	    z) duration=0.1;;
+ 	    x) duration=0.5;;
+	    c) duration=1.0;;
 
     esac
     tone $note $duration
