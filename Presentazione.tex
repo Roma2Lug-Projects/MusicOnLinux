@@ -1,0 +1,356 @@
+\documentclass{beamer}
+%\documentclass[handout]{beamer}
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{4 on 1}[a4paper,border shrink=5mm,landscape]
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{multirow}
+
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{RaspberryPi}{HTML}{BB1142}
+
+\usetheme{Pittsburgh}
+\setbeamercovered{dynamic}
+\setbeamertemplate{frametitle}[default][left]
+
+\setbeamercolor{structure}{fg=RaspberryPi}
+%\setbeamercolor{frametitle}{fg=OpenStack}
+%\setbeamercolor{title in head/foot}{fg=OpenStack}
+%\setbeamercolor{author in head/foot}{fg=blue!55!black}
+%\setbeamercolor{date}{fg=blue!40!black}
+%\setbeamercolor{institute in head/foot}{fg=blue!55!black}
+%\setbeamercolor{section in head/foot}{fg=blue!55!black}
+
+\setbeamertemplate{sidebar canvas right}{\vspace*{3pt}\hspace*{-93pt}{\includegraphics[angle=0,origin=c,height=40pt]{imgs/logo02.png}}}
+\beamertemplatenavigationsymbolsempty
+
+
+\begin{document}
+
+
+\begin{frame}[plain]
+\begin{center}
+\includegraphics[width=0.08\textwidth]{imgs/logo-uniroma2-red.png}
+\\    
+\textbf{\color{RaspberryPi} Università  degli studi di \\Roma Tor Vergata}
+\\[0.2cm]
+\tiny Facoltà di Ingegneria
+\\[0.2cm]
+\small Roma2LUG
+\\
+\tiny Linux User Group
+\\[0.2cm]
+
+
+\vfill
+{
+\Large \textbf{Roma2LUG Incontra}
+\\[0.2cm]
+\color{RaspberryPi}\Large \textbf{Music On Linux}
+\\[1.0cm]
+}
+\vfill
+
+\small{
+\textbf{Speaker}
+\hfill
+\textbf{Speaker}
+\\
+\textit{Giulia Cassarà}
+\hfill
+\textit{Emanuele Savo}}
+
+
+\end{center}
+
+\end{frame}
+
+
+%\begin{frame}
+%\frametitle{\textbf{Indice della presentazione}}
+%\framesubtitle{Argomenti trattati}
+%\tableofcontents
+%\end{frame}
+
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  %language=BASH,
+  showstringspaces=false,
+  frame=none,
+  basicstyle=\small\ttfamily,
+  keywordstyle=\bfseries\color{blue},
+  commentstyle=\itshape\color{red},
+  stringstyle=\color{orange},
+  rulecolor=\color{black}
+}
+
+\lstset{escapechar=@,style=customc}
+
+
+%Inizio presentazione
+
+\begin{frame}
+\frametitle{\textbf{OpenStack}}
+\framesubtitle{\textbf{Esempio di topologia virtuale realizzabile sulla piattaforma IaaS}}
+\begin{figure}
+\centering
+\includegraphics[scale=0.15]{imgs/rasp3b.jpg}
+\begin{block}{Studio Piattaforma IaaS}
+\begin{itemize}
+\item[$\bullet$] Born as a MiniPC
+\item[$\bullet$] Can reproduce HD movies
+\item[$\bullet$] The main difference with a PC are the GPIO ports
+\end{itemize}
+\end{block}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{\textbf{OpenStack}}
+\framesubtitle{\textbf{Esempio di topologia virtuale realizzabile sulla piattaforma IaaS}}
+\begin{figure}
+\centering
+\includegraphics[scale=0.70]{imgs/rasp3btec.png}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{\textbf{OpenStack}}
+\framesubtitle{\textbf{Esempio di topologia virtuale realizzabile sulla piattaforma IaaS}}
+\begin{figure}
+\centering
+\includegraphics[scale=1]{imgs/gpio.png}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{\textbf{Suite di benchmark CRD (Cpu Ram Disk)}}
+\framesubtitle{\textbf{Loader \& Worker}}
+
+\begin{block}{AAAAAAAAAAAAAAAAAAAAAAAAAA}
+\begin{itemize}
+\item[$\bullet$] Download Raspbian OS for the Raspberry Pi
+\begin{lstlisting}
+  $ wget https://downloads.raspberrypi.org/raspbian_lite_latest
+\end{lstlisting}
+\item[$\bullet$] Unzip Raspbian OS for the Raspberry Pi
+\begin{lstlisting}
+  $ unzip xxxx-xx-xx-raspbian-jessie-lite.zip
+\end{lstlisting}
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{\textbf{Suite di benchmark CRD (Cpu Ram Disk)}}
+\framesubtitle{\textbf{Loader \& Worker}}
+\begin{block}{Studio Piattaforma IaaS}
+\begin{itemize}
+\item[$\bullet$] Insert SD card
+\item[$\bullet$] Search for device name of the SD card with this command:
+\begin{lstlisting}
+  $ sudo fdisk -l
+\end{lstlisting}
+\item[$\bullet$] Search for info about your SD card. \textit{Warning, be careful!}
+\begin{lstlisting}[basicstyle=\tiny\ttfamily]
+  Disk /dev/mmcblk0: 14,5 GiB, 15523119104 bytes, 30318592 sectors      
+  Units: sectors of 1 * 512 = 512 bytes                                 
+  Sector size (logical/physical): 512 bytes / 512 bytes                 
+  I/O size (minimum/optimal): 512 bytes / 512 bytesa                    
+  Disklabel type: dos                                                   
+  Disk identifier: 0x6f92008e                                           
+\end{lstlisting}
+\item[$\bullet$] Replace mmcblk0 with device name of your SD
+\begin{lstlisting}
+  $ sudo dd \
+    if=/xxxx-xx-xx-raspbian-jessie-lite.img \
+    of=/dev/mmcblk0
+\end{lstlisting}
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+	\frametitle{\textbf{Suite di benchmark CRD (Cpu Ram Disk)}}
+	\framesubtitle{\textbf{Loader \& Worker}}
+
+	\begin{block}{Studio Piattaforma IaaS}
+		\begin{itemize}
+			\item[$\bullet$] Connect ethernet cable to the Raspberry Pi
+			\item[$\bullet$] Connect HDMI cable to the Raspberry Pi
+			\item[$\bullet$] Connect micro USB power cable to the Raspberry Pi
+			\item[$\bullet$] Waiting for coplete boot...
+			\item[$\bullet$] Login
+			\begin{itemize}
+				\item[$\bullet$] user: pi
+				\item[$\bullet$] password: raspberry
+			\end{itemize}
+			\item[$\bullet$] Execute these commands:
+			\begin{lstlisting}
+  $ sudo apt-get update
+  $ sudo apt-get dist-upgrade -y
+  $ sudo apt-get install rpi-upate -y
+			\end{lstlisting}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+	\frametitle{\textbf{Suite di benchmark CRD (Cpu Ram Disk)}}
+	\framesubtitle{\textbf{Loader \& Worker}}
+
+	\begin{block}{Studio Piattaforma IaaS}
+		\begin{itemize}
+			\item[$\bullet$] Config Raspbian OS with this tool
+			\begin{lstlisting}
+   $ sudo raspi-config
+			\end{lstlisting}
+			\begin{itemize}
+				\item[$\bullet$] Expand Filesystem
+				\item[$\bullet$] Internationalisation Options
+				\begin{itemize}
+					\item[$\bullet$] Change Locale
+					\item[$\bullet$] Change Timezone
+					\item[$\bullet$] Change Keyboard Layout
+					\item[$\bullet$] Change wifi Country
+				\end{itemize}
+			\end{itemize}
+			\begin{lstlisting}
+   $ sudo reboot
+			\end{lstlisting}
+			\item[$\bullet$] Update Raspberry Pi firmware
+			\begin{lstlisting}
+   $ sudo rpi-update
+   $ sudo reboot
+			\end{lstlisting}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+	\frametitle{\textbf{Suite di benchmark CRD (Cpu Ram Disk)}}
+	\framesubtitle{\textbf{Loader \& Worker}}
+
+	\begin{block}{Studio Piattaforma IaaS}
+		\begin{itemize}
+			\item[$\bullet$] Install library for gpio and other tools
+			\begin{lstlisting}
+  $ sudo apt-get install wiringpi git vim
+			\end{lstlisting}
+			\item[$\bullet$] Download the scripts
+			\begin{lstlisting}
+  $ git clone https://github.com/Roma2Lug-Projects/MusicOnLinux.git
+			\end{lstlisting}
+			\item[$\bullet$] Open the script
+			\begin{lstlisting}
+  $ cd MusicOnLinux
+  $ vim keyboard.sh
+  $ vim smario.sh
+			\end{lstlisting}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+	\frametitle{\textbf{Suite di benchmark CRD (Cpu Ram Disk)}}
+	\framesubtitle{\textbf{Loader \& Worker}}
+
+	\begin{block}{Studio Piattaforma IaaS}
+		\begin{itemize}
+			\item[$\bullet$] Give execute permission
+			\begin{lstlisting}
+  $ chmod +x keyboard.sh
+  $ chmod +x smario.sh
+			\end{lstlisting}
+			\item[$\bullet$] Execute the scripts!
+			\begin{lstlisting}
+  $ ./keyboard.sh
+  $ ./smario.sh
+			\end{lstlisting}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+	\frametitle{\textbf{Keyboard.sh}}
+			\begin{lstlisting}[language=bash]
+  #! /bin/bash
+  tone () {
+  local note="$1"
+  local duration="$2"
+  if test "$note" -eq 0; then
+    gpio -g mode 18 in
+  else
+    local period="$(perl -e"printf'%.0f',600000/440/2**(( $note-69)/12 )")"
+    echo $period
+    gpio -g mode 18 pwm
+    gpio pwmr "$(( period ))"
+    gpio -g pwm 18 "$(( period/2 ))"
+    gpio pwm-ms
+    sleep $duration
+    tone 0
+  fi
+}
+
+			\end{lstlisting}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+	\frametitle{\textbf{Keyboard.sh}}
+		\begin{lstlisting}[language=bash]
+  #! /bin/bash
+  local note="$1"
+  local duration="$2"
+  if test "$note" -eq 0; then
+    gpio -g mode 18 in
+  		\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}[plain]
+\begin{center}
+\includegraphics[width=0.12\textwidth]{imgs/logo-uniroma2-red.png}
+\vfill
+\huge{\textit{\textbf{Grazie per l'attenzione}}}
+\vfill
+\includegraphics[width=0.40\textwidth]{imgs/logo02.png}
+\end{center}
+\end{frame}
+
+\end{document}
