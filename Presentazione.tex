@@ -313,7 +313,6 @@
     gpio -g mode 18 in
   else
     local period="$(perl -e"printf'%.0f',600000/440/2**(( $note-69)/12 )")"
-    echo $period
     gpio -g mode 18 pwm
     gpio pwmr "$(( period ))"
     gpio -g pwm 18 "$(( period/2 ))"
@@ -330,14 +329,68 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
-	\frametitle{\textbf{Keyboard.sh}}
+	\frametitle{\textbf{Keyboard.sh nel dettaglio}}
 		\begin{lstlisting}[language=bash]
-  #! /bin/bash
-  local note="$1"
-  local duration="$2"
-  if test "$note" -eq 0; then
-    gpio -g mode 18 in
+  #!/bin/bash
   		\end{lstlisting}
+  \begin{lstlisting}[language=bash]
+  tone () {
+  	local note="$1"
+  	local duration="$2"
+  	if test "$note" -eq 0; then
+    	gpio -g mode 18 in
+  \end{lstlisting}
+  \begin{itemize}
+  	\item[$\bullet$] first parameter: note
+  	\item[$\bullet$] second parameter: duration of the note
+  	\item[$\bullet$] If the note is 0 I put the GPIO in input mode, so the speaker doesn’t make any sound. 
+  \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+	\frametitle{\textbf{Keyboard.sh nel dettaglio(1)}}
+  \begin{lstlisting}[language=bash]
+ else
+    local period="$(perl -e"printf'%.0f',600000/440/2**(( $note-69)/12 )")"
+  \end{lstlisting}
+  \begin{itemize}
+  	\item[$\bullet$] We use the formula below to obtain the frequency of the note.
+  	
+  	\begin{center}
+  		\begin{equation}
+  			K\cdot\frac{440}{2^{\frac{X-69}{12}}}
+  		\end{equation}
+  	\end{center}
+  		
+  	
+  	\item[$\bullet$] K=600.000 is a hardware constant.
+  	\item[$\bullet$] 
+The twelfth root of two or $\sqrt[12]{2}$ is an algebraic irrational number. It is most important in music theory, where it represents the frequency ratio of a semitone in twelve-tone equal temperament.
+  	\item[$\bullet$] X is our note, encoded in ASCII. note 'A' = 69 and has a frequency of 440 Hz.
+  \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}[fragile]
+	\frametitle{\textbf{Keyboard.sh nel dettaglio(2)}}
+  \begin{lstlisting}[language=bash]
+ gpio -g mode 18 pwm
+    gpio pwmr "$(( period ))"
+    gpio -g pwm 18 "$(( period/2 ))"
+    gpio pwm-ms
+    sleep $duration
+    tone 0
+  \end{lstlisting}
+  \begin{itemize}
+  	\item[$\bullet$] This is the core function. I give to the BCM_GPIPO 18 power and I set the frequency calculated before.  
+  	\item[$\bullet$] 
+The twelfth root of two or $\sqrt[12]{2}$ is an algebraic irrational number. It is most important in music theory, where it represents the frequency ratio of a semitone in twelve-tone equal temperament.
+  	\item[$\bullet$] X is our note, encoded in ASCII. note 'A' = 69 and has a frequency of 440 Hz.
+  \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
