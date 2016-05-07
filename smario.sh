@@ -32,18 +32,18 @@ l2=0.15
 l3=0.20
 
 tone () {
-  local note="$1" #primo parametro
-  local duration="$2" #secondo parametro
+  local note="$1" 
+  local duration="$2"
   if test "$note" -eq 0; then
     gpio -g mode 18 in
   else
-    local period="$(perl -e"printf'%.0f',600000/440/2**(( $note-69)/12 )")"
+    local period=$(python -c 'print "{0:.0f}".format(600000.0/440/2**(( 69-69)/12 ))')
     gpio -g mode 18 pwm
     gpio pwmr "$(( period ))"
     gpio -g pwm 18 "$(( period/2 ))"
     gpio pwm-ms
     sleep $duration
-    tone 0 #resetta la porta. Se lo tolgo rimane in output all'infinito
+    tone 0
   fi
 }
 
