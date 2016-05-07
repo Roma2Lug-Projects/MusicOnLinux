@@ -6,7 +6,7 @@ tone () {
   if test "$note" -eq 0; then
     gpio -g mode 18 in
   else
-    local period=$(python -c 'print "{0:.0f}".format(600000.0/440/2**(( 69-69)/12 ))')
+    local period=$(python -c "import sys; print '{0:.0f}'.format(600000.0/440.0/2**((int(sys.argv[1])-69)/12.0))" $note)
     gpio -g mode 18 pwm
     gpio pwmr "$(( period ))"
     gpio -g pwm 18 "$(( period/2 ))"
@@ -38,10 +38,6 @@ do
         o) note=69;;
         0) note=70;;
         p) note=71;;
-        "[") note=72;;
-        "-") note=73;;
-        "]") note=74;;
-        "=") note=75;;
 	    z) duration=0.1;;
  	    x) duration=0.5;;
 	    c) duration=1.0;;
