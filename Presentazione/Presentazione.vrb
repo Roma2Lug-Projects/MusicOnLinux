@@ -1,7 +1,7 @@
-\frametitle{\textbf{Keyboard.sh nel dettaglio(2)}}
+\frametitle{\textbf{Tone function in details (3)}}
   \begin{lstlisting}[language=bash]
       ...
- 	  gpio -g mode 18 pwm
+      gpio -g mode 18 pwm
       gpio pwmr "$(( period ))"
       gpio -g pwm 18 "$(( period/2 ))"
       gpio pwm-ms
@@ -11,7 +11,7 @@
   }
   \end{lstlisting}
   \begin{itemize}
-  \item[$\bullet$] This is the core function. I give power to the speaker with a modulation technique called Pulse Width Modulation.
-  \item[$\bullet$] The speaker beeps for a time "duration".
-  \item[$\bullet$] I mute the sound passing 0 to the function tone. Without tone 0 the speaker will sound indefinitily.
+  \item[$\bullet$] This is the core of the function. These lines of code give power to the connected speaker with a modulation technique called Pulse Width Modulation (PWM).
+  \item[$\bullet$] The speaker beeps the "note" for a time "duration".
+  \item[$\bullet$] Finally the last command mute the sound by recalling the tone function with 0. Without this line the speaker will sound indefinitily(!!!).
   \end{itemize}

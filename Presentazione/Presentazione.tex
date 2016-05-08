@@ -100,12 +100,12 @@
 %Inizio presentazione
 
 \begin{frame}
-\frametitle{\textbf{OpenStack}}
-\framesubtitle{\textbf{Esempio di topologia virtuale realizzabile sulla piattaforma IaaS}}
+\frametitle{\textbf{Raspberry Pi}}
+\framesubtitle{\textbf{Introduction to the Raspberry Pi 3 Model B Board}}
 \begin{figure}
 \centering
 \includegraphics[scale=0.15]{imgs/rasp3b.jpg}
-\begin{block}{Studio Piattaforma IaaS}
+\begin{block}{General features}
 \begin{itemize}
 \item[$\bullet$] Born as a MiniPC
 \item[$\bullet$] Can reproduce HD movies
@@ -118,8 +118,8 @@
 %%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{\textbf{OpenStack}}
-\framesubtitle{\textbf{Esempio di topologia virtuale realizzabile sulla piattaforma IaaS}}
+\frametitle{\textbf{Raspberry Pi}}
+\framesubtitle{\textbf{Specs of the Raspberry Pi 3 Model B Board}}
 \begin{figure}
 \centering
 \includegraphics[scale=0.70]{imgs/rasp3btec.png}
@@ -129,8 +129,8 @@
 %%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{\textbf{OpenStack}}
-\framesubtitle{\textbf{Esempio di topologia virtuale realizzabile sulla piattaforma IaaS}}
+\frametitle{\textbf{Raspberry Pi}}
+\framesubtitle{\textbf{GPIO ports mapping of the Raspberry Pi 3 Model B Board}}
 \begin{figure}
 \centering
 \includegraphics[scale=1]{imgs/gpio.png}
@@ -140,12 +140,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
-\frametitle{\textbf{Suite di benchmark CRD (Cpu Ram Disk)}}
-\framesubtitle{\textbf{Loader \& Worker}}
+\frametitle{\textbf{Raspbian OS installation}}
+\framesubtitle{\textbf{Download and unzip OS}}
 
-\begin{block}{AAAAAAAAAAAAAAAAAAAAAAAAAA}
+\begin{center}
+\includegraphics[width=0.60\textwidth]{imgs/raspbian_logo.jpg}
+\end{center}
 \begin{itemize}
-\item[$\bullet$] Download Raspbian OS for the Raspberry Pi
+\item[$\bullet$] Download Raspbian OS lite version for the Raspberry Pi
 \begin{lstlisting}
   $ wget https://downloads.raspberrypi.org/raspbian_lite_latest
 \end{lstlisting}
@@ -154,18 +156,16 @@
   $ unzip xxxx-xx-xx-raspbian-jessie-lite.zip
 \end{lstlisting}
 \end{itemize}
-\end{block}
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
-\frametitle{\textbf{Suite di benchmark CRD (Cpu Ram Disk)}}
-\framesubtitle{\textbf{Loader \& Worker}}
-\begin{block}{Studio Piattaforma IaaS}
+\frametitle{\textbf{After Download}}
+\framesubtitle{\textbf{Prepare SD card}}
 \begin{itemize}
-\item[$\bullet$] Insert SD card
+\item[$\bullet$] Insert SD card into the PC
 \item[$\bullet$] Search for device name of the SD card with this command:
 \begin{lstlisting}
   $ sudo fdisk -l
@@ -186,17 +186,15 @@
     of=/dev/mmcblk0
 \end{lstlisting}
 \end{itemize}
-\end{block}
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
-	\frametitle{\textbf{Suite di benchmark CRD (Cpu Ram Disk)}}
-	\framesubtitle{\textbf{Loader \& Worker}}
+	\frametitle{\textbf{Boot}}
+	\framesubtitle{\textbf{Boot the system and update packages}}
 
-	\begin{block}{Studio Piattaforma IaaS}
 		\begin{itemize}
 			\item[$\bullet$] Connect ethernet cable to the Raspberry Pi
 			\item[$\bullet$] Connect HDMI cable to the Raspberry Pi
@@ -214,16 +212,13 @@
   $ sudo apt-get install rpi-upate -y
 			\end{lstlisting}
 		\end{itemize}
-	\end{block}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
-	\frametitle{\textbf{Suite di benchmark CRD (Cpu Ram Disk)}}
-	\framesubtitle{\textbf{Loader \& Worker}}
-
-	\begin{block}{Studio Piattaforma IaaS}
+	\frametitle{\textbf{Configuration}}
+	\framesubtitle{\textbf{Expand filesystem and configure your raspberry}}
 		\begin{itemize}
 			\item[$\bullet$] Config Raspbian OS with this tool
 			\begin{lstlisting}
@@ -248,16 +243,13 @@
    $ sudo reboot
 			\end{lstlisting}
 		\end{itemize}
-	\end{block}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
-	\frametitle{\textbf{Suite di benchmark CRD (Cpu Ram Disk)}}
-	\framesubtitle{\textbf{Loader \& Worker}}
-
-	\begin{block}{Studio Piattaforma IaaS}
+	\frametitle{\textbf{WiringPi and GIT}}
+	\framesubtitle{\textbf{Install necessary software}}
 		\begin{itemize}
 			\item[$\bullet$] Install library for gpio and other tools
 			\begin{lstlisting}
@@ -269,21 +261,19 @@
 			\end{lstlisting}
 			\item[$\bullet$] Open the script
 			\begin{lstlisting}
-  $ cd MusicOnLinux
+  $ cd MusicOnLinux/Scripts
   $ vim keyboard.sh
   $ vim smario.sh
 			\end{lstlisting}
 		\end{itemize}
-	\end{block}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
-	\frametitle{\textbf{Suite di benchmark CRD (Cpu Ram Disk)}}
-	\framesubtitle{\textbf{Loader \& Worker}}
+	\frametitle{\textbf{Final steps}}
+	\framesubtitle{\textbf{Script's permission and execution}}
 
-	\begin{block}{Studio Piattaforma IaaS}
 		\begin{itemize}
 			\item[$\bullet$] Give execute permission
 			\begin{lstlisting}
@@ -296,14 +286,13 @@
   $ ./smario.sh
 			\end{lstlisting}
 		\end{itemize}
-	\end{block}
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
-	\frametitle{\textbf{Keyboard.sh}}
+	\frametitle{\textbf{Tone function}}
 			\begin{lstlisting}[language=bash]
 #! /bin/bash
 tone () {
@@ -312,7 +301,7 @@ tone () {
   if test "$note" -eq 0; then
     gpio -g mode 18 in
   else
-    local period="$(perl -e"printf'%.0f',600000/440/2**(( $note-69)/12 )")"
+    local period=$(python -c "print '{0:.0f}'.format(600000.0/440.0/2**(($note-69)/12.0))")
     gpio -g mode 18 pwm
     gpio pwmr "$(( period ))"
     gpio -g pwm 18 "$(( period/2 ))"
@@ -329,7 +318,7 @@ tone () {
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
-	\frametitle{\textbf{Keyboard.sh nel dettaglio}}
+	\frametitle{\textbf{Tone function in details (1)}}
   \begin{lstlisting}[language=bash]
   tone () {
     local note="$1"
@@ -339,20 +328,20 @@ tone () {
     ...
   \end{lstlisting}
   \begin{itemize}
-  	\item[$\bullet$] first parameter: note
-  	\item[$\bullet$] second parameter: duration of the note
-  	\item[$\bullet$] If the note is 0 I put the GPIO in input mode, so the speaker doesn’t make any sound. 
+  	\item[$\bullet$] First parameter: note.
+  	\item[$\bullet$] Second parameter: duration of the note.
+  	\item[$\bullet$] Test if the note is 0 then put the GPIO in input mode, so the speaker doesn’t make any sound. 
   \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
-	\frametitle{\textbf{Keyboard.sh nel dettaglio(1)}}
+	\frametitle{\textbf{Tone function in details (2)}}
   \begin{lstlisting}[language=bash]
     ...
     else
-      local period="$(perl -e"printf'%.0f',600000/440/2**(( $note-69)/12 )")"
+      local period=$(python -c "print '{0:.0f}'.format(600000.0/440.0/2**(($note-69)/12.0))")
       ...
   \end{lstlisting}
   \begin{itemize}
@@ -363,10 +352,10 @@ tone () {
   	\end{center}
   		
   	
-  	\item[$\bullet$] K=600.000 is a hardware constant.
+  	\item[$\bullet$] K=600.000 is a constant linked to the Raspberry specs.
   	\item[$\bullet$] 
 The twelfth root of two or $\sqrt[12]{2}$ is an algebraic irrational number. It is most important in music theory, where it represents the frequency ratio of a semitone in twelve-tone equal temperament.
-  	\item[$\bullet$] X is our note, encoded in ASCII. note 'A' = 69 and has a frequency of 440 Hz.
+  	\item[$\bullet$] X is our note, encoded in ASCII. Note 'A' = 69 and has a frequency of 440 Hz.
   \end{itemize}
 \end{frame}
 
@@ -374,10 +363,10 @@ The twelfth root of two or $\sqrt[12]{2}$ is an algebraic irrational number. It 
 
 
 \begin{frame}[fragile]
-	\frametitle{\textbf{Keyboard.sh nel dettaglio(2)}}
+	\frametitle{\textbf{Tone function in details (3)}}
   \begin{lstlisting}[language=bash]
       ...
- 	  gpio -g mode 18 pwm
+      gpio -g mode 18 pwm
       gpio pwmr "$(( period ))"
       gpio -g pwm 18 "$(( period/2 ))"
       gpio pwm-ms
@@ -387,9 +376,9 @@ The twelfth root of two or $\sqrt[12]{2}$ is an algebraic irrational number. It 
   }
   \end{lstlisting}
   \begin{itemize}
-  \item[$\bullet$] This is the core function. I give power to the speaker with a modulation technique called Pulse Width Modulation.
-  \item[$\bullet$] The speaker beeps for a time "duration".
-  \item[$\bullet$] I mute the sound passing 0 to the function tone. Without tone 0 the speaker will sound indefinitily.
+  \item[$\bullet$] This is the core of the function. These lines of code give power to the connected speaker with a modulation technique called Pulse Width Modulation (PWM).
+  \item[$\bullet$] The speaker beeps the "note" for a time "duration".
+  \item[$\bullet$] Finally the last command mute the sound by recalling the tone function with 0. Without this line the speaker will sound indefinitily(!!!).
   \end{itemize}
 \end{frame}
 
@@ -400,7 +389,20 @@ The twelfth root of two or $\sqrt[12]{2}$ is an algebraic irrational number. It 
 \begin{center}
 \includegraphics[width=0.12\textwidth]{imgs/logo-uniroma2-red.png}
 \vfill
-\huge{\textit{\textbf{Grazie per l'attenzione}}}
+\huge{\textit{\textbf{[DEMO]}}}
+\vfill
+\includegraphics[width=0.40\textwidth]{imgs/logo02.png}
+\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}[plain]
+\begin{center}
+\includegraphics[width=0.12\textwidth]{imgs/logo-uniroma2-red.png}
+\vfill
+\huge{\textit{\textbf{Grazie per l'attenzione!}}}
 \vfill
 \includegraphics[width=0.40\textwidth]{imgs/logo02.png}
 \end{center}
