@@ -261,7 +261,7 @@
 		\begin{itemize}
 			\item[$\bullet$] Install library for gpio and other tools
 			\begin{lstlisting}
-  $ sudo apt-get install wiringpi git vim
+  $ sudo apt-get install -y wiringpi git vim
 			\end{lstlisting}
 			\item[$\bullet$] Download the scripts
 			\begin{lstlisting}
@@ -305,8 +305,8 @@
 \begin{frame}[fragile]
 	\frametitle{\textbf{Keyboard.sh}}
 			\begin{lstlisting}[language=bash]
-  #! /bin/bash
-  tone () {
+#! /bin/bash
+tone () {
   local note="$1"
   local duration="$2"
   if test "$note" -eq 0; then
@@ -330,15 +330,13 @@
 
 \begin{frame}[fragile]
 	\frametitle{\textbf{Keyboard.sh nel dettaglio}}
-		\begin{lstlisting}[language=bash]
-  #!/bin/bash
-  		\end{lstlisting}
   \begin{lstlisting}[language=bash]
   tone () {
-  	local note="$1"
-  	local duration="$2"
-  	if test "$note" -eq 0; then
-    	gpio -g mode 18 in
+    local note="$1"
+    local duration="$2"
+    if test "$note" -eq 0; then
+      gpio -g mode 18 in
+    ...
   \end{lstlisting}
   \begin{itemize}
   	\item[$\bullet$] first parameter: note
@@ -352,16 +350,16 @@
 \begin{frame}[fragile]
 	\frametitle{\textbf{Keyboard.sh nel dettaglio(1)}}
   \begin{lstlisting}[language=bash]
- else
-    local period="$(perl -e"printf'%.0f',600000/440/2**(( $note-69)/12 )")"
+    ...
+    else
+      local period="$(perl -e"printf'%.0f',600000/440/2**(( $note-69)/12 )")"
+      ...
   \end{lstlisting}
   \begin{itemize}
   	\item[$\bullet$] We use the formula below to obtain the frequency of the note.
   	
   	\begin{center}
-  		\begin{equation}
-  			K\cdot\frac{440}{2^{\frac{X-69}{12}}}
-  		\end{equation}
+  			$K\cdot\frac{440}{2^{\frac{X-69}{12}}}$
   	\end{center}
   		
   	
@@ -378,18 +376,20 @@ The twelfth root of two or $\sqrt[12]{2}$ is an algebraic irrational number. It 
 \begin{frame}[fragile]
 	\frametitle{\textbf{Keyboard.sh nel dettaglio(2)}}
   \begin{lstlisting}[language=bash]
- gpio -g mode 18 pwm
-    gpio pwmr "$(( period ))"
-    gpio -g pwm 18 "$(( period/2 ))"
-    gpio pwm-ms
-    sleep $duration
-    tone 0
+      ...
+ 	  gpio -g mode 18 pwm
+      gpio pwmr "$(( period ))"
+      gpio -g pwm 18 "$(( period/2 ))"
+      gpio pwm-ms
+      sleep $duration
+      tone 0
+    fi
+  }
   \end{lstlisting}
   \begin{itemize}
-  	\item[$\bullet$] This is the core function. I give to the BCM_GPIPO 18 power and I set the frequency calculated before.  
-  	\item[$\bullet$] 
-The twelfth root of two or $\sqrt[12]{2}$ is an algebraic irrational number. It is most important in music theory, where it represents the frequency ratio of a semitone in twelve-tone equal temperament.
-  	\item[$\bullet$] X is our note, encoded in ASCII. note 'A' = 69 and has a frequency of 440 Hz.
+  \item[$\bullet$] This is the core function. I give power to the speaker with a modulation technique called Pulse Width Modulation.
+  \item[$\bullet$] The speaker beeps for a time "duration".
+  \item[$\bullet$] I mute the sound passing 0 to the function tone. Without tone 0 the speaker will sound indefinitily.
   \end{itemize}
 \end{frame}
 

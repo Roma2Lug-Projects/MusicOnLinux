@@ -1,15 +1,17 @@
 \frametitle{\textbf{Keyboard.sh nel dettaglio(2)}}
   \begin{lstlisting}[language=bash]
- gpio -g mode 18 pwm
-    gpio pwmr "$(( period ))"
-    gpio -g pwm 18 "$(( period/2 ))"
-    gpio pwm-ms
-    sleep $duration
-    tone 0
+      ...
+ 	  gpio -g mode 18 pwm
+      gpio pwmr "$(( period ))"
+      gpio -g pwm 18 "$(( period/2 ))"
+      gpio pwm-ms
+      sleep $duration
+      tone 0
+    fi
+  }
   \end{lstlisting}
   \begin{itemize}
-  	\item[$\bullet$] K=600.000 is a hardware constant.
-  	\item[$\bullet$]
-The twelfth root of two or $\sqrt[12]{2}$ is an algebraic irrational number. It is most important in music theory, where it represents the frequency ratio of a semitone in twelve-tone equal temperament.
-  	\item[$\bullet$] X is our note, encoded in ASCII. note 'A' = 69 and has a frequency of 440 Hz.
+  \item[$\bullet$] This is the core function. I give power to the speaker with a modulation technique called Pulse Width Modulation.
+  \item[$\bullet$] The speaker beeps for a time "duration".
+  \item[$\bullet$] I mute the sound passing 0 to the function tone. Without tone 0 the speaker will sound indefinitily.
   \end{itemize}

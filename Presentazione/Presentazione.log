@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.30)  5 MAY 2016 18:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.30)  8 MAY 2016 17:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1504,7 +1504,7 @@ Package pdftex.def Info: imgs/logo02.png used on input line 326.
  (./Presentazione.vrb)
 File: imgs/logo02.png Graphic file (type png)
  <use imgs/logo02.png>
-Package pdftex.def Info: imgs/logo02.png used on input line 348.
+Package pdftex.def Info: imgs/logo02.png used on input line 346.
 (pdftex.def)             Requested size: 7.3313pt x 3.27205pt.
  [12
 
@@ -1515,7 +1515,7 @@ Package pdftex.def Info: imgs/logo02.png used on input line 348.
 (./Presentazione.vrb)
 File: imgs/logo02.png Graphic file (type png)
  <use imgs/logo02.png>
-Package pdftex.def Info: imgs/logo02.png used on input line 373.
+Package pdftex.def Info: imgs/logo02.png used on input line 371.
 (pdftex.def)             Requested size: 7.3313pt x 3.27205pt.
  [13
 
@@ -1567,10 +1567,10 @@ Package rerunfilecheck Info: File `Presentazione.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 409.
  ) 
 Here is how much of TeX's memory you used:
- 19832 strings out of 493029
- 358064 string characters out of 6136234
- 525747 words of memory out of 5000000
- 22820 multiletter control sequences out of 15000+600000
+ 19829 strings out of 493029
+ 357925 string characters out of 6136234
+ 524783 words of memory out of 5000000
+ 22817 multiletter control sequences out of 15000+600000
  99922 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,17n,62p,921b,1373s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1585,7 +1585,7 @@ sy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fo
 nts/type1/public/lm/lmsy9.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pf
 b></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/ty
 pe1/public/lm/lmtt8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb>
-Output written on Presentazione.pdf (15 pages, 2498370 bytes).
+Output written on Presentazione.pdf (15 pages, 2498264 bytes).
 PDF statistics:
  175 PDF objects out of 1000 (max. 8388607)
  126 compressed objects within 2 object streams
