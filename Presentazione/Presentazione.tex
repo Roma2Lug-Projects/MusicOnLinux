@@ -345,17 +345,16 @@ tone () {
       ...
   \end{lstlisting}
   \begin{itemize}
-  	\item[$\bullet$] We use the formula below to obtain the frequency of the note.
+  	\item[$\bullet$] We use the formula below to obtain the frequency of the speaker
   	
   	\begin{center}
   			$K\cdot\frac{440}{2^{\frac{X-69}{12}}}$
   	\end{center}
   		
   	
-  	\item[$\bullet$] K=600.000 is a constant linked to the Raspberry specs.
-  	\item[$\bullet$] 
-The twelfth root of two or $\sqrt[12]{2}$ is an algebraic irrational number. It is most important in music theory, where it represents the frequency ratio of a semitone in twelve-tone equal temperament.
-  	\item[$\bullet$] X is our note, encoded in ASCII. Note 'A' = 69 and has a frequency of 440 Hz.
+  	\item[$\bullet$] $K =\frac{19.2MhZ}{32} = 600khZ$ is the base frequency of the speaker where 19.2MhZ is the speed of the raspberry internal clock.
+  	\item[$\bullet$] The twelfth root of two or $\sqrt[12]{2}$ is an algebraic irrational number. It is most important in music theory, where it represents the frequency ratio of a semitone in twelve-tone equal temperament.
+  	\item[$\bullet$] X is the range of the note, encoded in ASCII.
   \end{itemize}
 \end{frame}
 
