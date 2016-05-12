@@ -109,7 +109,8 @@
 \begin{itemize}
 \item[$\bullet$] Born as a MiniPC
 \item[$\bullet$] Can reproduce HD movies
-\item[$\bullet$] The main difference with a PC are the GPIO ports
+\item[$\bullet$] Pi is versatile, you can use it in many ways: web servers, print servers, robot, camera... We have use it as a speaker :)
+%\item[$\bullet$] The main difference with a PC are the GPIO ports%
 \end{itemize}
 \end{block}
 \end{figure}
@@ -133,7 +134,12 @@
 \framesubtitle{\textbf{GPIO ports mapping of the Raspberry Pi 3 Model B Board}}
 \begin{figure}
 \centering
-\includegraphics[scale=1]{imgs/gpio.png}
+\includegraphics[scale=0.8]{imgs/gpio.png}
+\begin{itemize}
+\item[$\bullet$]The main difference between Raspberry Pi and a normal PC are GPIO pins.
+\item[$\bullet$]These pins are a physical interface between the Pi and the outside world. Raspberry can take an input from ouside (input mode) or the Pi can "generate" something outside (output mode)
+\item[$\bullet$]\textcolor{red}{\textbf{Be aware!}} GPIO pins don't tolerate more than 3.3 V!
+\end{itemize}
 \end{figure}
 \end{frame}
 
@@ -163,7 +169,7 @@
 
 \begin{frame}[fragile]
 \frametitle{\textbf{After Download}}
-\framesubtitle{\textbf{Prepare SD card}}
+\framesubtitle{\textbf{Prepare SD card from Linux}}
 \begin{itemize}
 \item[$\bullet$] Insert SD card into the PC
 \item[$\bullet$] Search for device name of the SD card with this command:
@@ -205,13 +211,13 @@
 				\item[$\bullet$] user: pi
 				\item[$\bullet$] password: raspberry
 			\end{itemize}
-			\item[$\bullet$] Execute these commands:
+			\item[$\bullet$] Repository update:
 			\begin{lstlisting}
   $ sudo apt-get update
   $ sudo apt-get dist-upgrade -y
   $ sudo apt-get install rpi-update -y
 			\end{lstlisting}
-		\end{itemize}
+			\end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -301,10 +307,10 @@ tone () {
   if test "$note" -eq 0; then
     gpio -g mode 18 in
   else
-    local period=$(python -c "print '{0:.0f}'.format(600000.0/440.0/2**(($note-69)/12.0))")
+    local frequency=$(python -c "print '{0:.0f}'.format(600000.0/440.0/2**(($note-69)/12.0))")
     gpio -g mode 18 pwm
-    gpio pwmr "$(( period ))"
-    gpio -g pwm 18 "$(( period/2 ))"
+    gpio pwmr "$(( frequency ))"
+    gpio -g pwm 18 "$(( frequency/2 ))"
     gpio pwm-ms
     sleep $duration
     tone 0
@@ -341,7 +347,7 @@ tone () {
   \begin{lstlisting}[language=bash]
     ...
     else
-      local period=$(python -c "print '{0:.0f}'.format(600000.0/440.0/2**(($note-69)/12.0))")
+      local frequency=$(python -c "print '{0:.0f}'.format(600000.0/440.0/2**(($note-69)/12.0))")
       ...
   \end{lstlisting}
   \begin{itemize}
@@ -352,8 +358,8 @@ tone () {
   	\end{center}
   		
   	
-  	\item[$\bullet$] $K =\frac{19.2MHz}{32} = 600kHz$ is the base frequency of the speaker where 19.2MhZ is the speed of the raspberry internal clock.
-  	\item[$\bullet$] The twelfth root of two or $\sqrt[12]{2}$ is an algebraic irrational number. It is most important in music theory, where it represents the frequency ratio of a semitone in twelve-tone equal temperament.
+  	\item[$\bullet$] $K =\frac{19.2MHz}{32} = 600kHz$ is the base frequency on which the notes are calculated. It is dependent to the hardware of Pi.
+  	\item[$\bullet$] The so called \textit{twelfth root of two} or $\sqrt[12]{2}$ is an algebraic irrational number. It is most important in music theory, where it represents the frequency ratio of a semitone in twelve-tone equal temperament.
   	\item[$\bullet$] X is the range of the note, encoded in ASCII.
   \end{itemize}
 \end{frame}
@@ -366,8 +372,8 @@ tone () {
   \begin{lstlisting}[language=bash]
       ...
       gpio -g mode 18 pwm
-      gpio pwmr "$(( period ))"
-      gpio -g pwm 18 "$(( period/2 ))"
+      gpio pwmr "$(( frequency ))"
+      gpio -g pwm 18 "$(( frequency/2 ))"
       gpio pwm-ms
       sleep $duration
       tone 0
@@ -375,7 +381,7 @@ tone () {
   }
   \end{lstlisting}
   \begin{itemize}
-  \item[$\bullet$] This is the core of the function. These lines of code give power to the connected speaker with a modulation technique called Pulse Width Modulation (PWM).
+  \item[$\bullet$] These lines of code tell to Pi to give HIGH signal through GPIO port 18 at a rate \textit{frequency} to the connected speaker with a modulation algorithm called Pulse Width Modulation (PWM).
   \item[$\bullet$] The speaker beeps the "note" for a time "duration".
   \item[$\bullet$] Finally the last command mute the sound by recalling the tone function with 0. Without this line the speaker will sound indefinitily(!!!).
   \end{itemize}

@@ -2,8 +2,8 @@
   \begin{lstlisting}[language=bash]
       ...
       gpio -g mode 18 pwm
-      gpio pwmr "$(( period ))"
-      gpio -g pwm 18 "$(( period/2 ))"
+      gpio pwmr "$(( frequency ))"
+      gpio -g pwm 18 "$(( frequency/2 ))"
       gpio pwm-ms
       sleep $duration
       tone 0
@@ -11,7 +11,7 @@
   }
   \end{lstlisting}
   \begin{itemize}
-  \item[$\bullet$] This is the core of the function. These lines of code give power to the connected speaker with a modulation technique called Pulse Width Modulation (PWM).
+  \item[$\bullet$] These lines of code tell to Pi to give HIGH signal through GPIO port 18 at a rate \textit{frequency} to the connected speaker with a modulation algorithm called Pulse Width Modulation (PWM).
   \item[$\bullet$] The speaker beeps the "note" for a time "duration".
   \item[$\bullet$] Finally the last command mute the sound by recalling the tone function with 0. Without this line the speaker will sound indefinitily(!!!).
   \end{itemize}
